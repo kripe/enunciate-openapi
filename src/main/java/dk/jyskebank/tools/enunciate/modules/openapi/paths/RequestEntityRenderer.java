@@ -44,6 +44,7 @@ public class RequestEntityRenderer extends Typed1ArgTemplateMethod<String, Strin
             List<? extends MediaTypeDescriptor> mediaTypes = method.getRequestEntity().getMediaTypes();
             mediaTypeList.addAll(mediaTypes.stream()
                     .map(mediaTypeDescriptor -> new MediaType(mediaTypeDescriptor.getMediaType(), mediaTypeDescriptor.getDataType()))
+                            .filter(mediaType -> mediaType != null && mediaType.getMedia() != null && mediaType.getType() != null)
                     .collect(Collectors.toList()));
         }
 
